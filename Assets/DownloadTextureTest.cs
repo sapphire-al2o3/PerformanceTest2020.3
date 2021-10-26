@@ -25,7 +25,7 @@ public class DownloadTextureTest : MonoBehaviour
 
             var tex = DownloadHandlerTexture.GetContent(req);
 
-            Debug.Log(req.isNetworkError);
+            Debug.Log(req.result);
         }
 
         Resources.UnloadUnusedAssets();
@@ -39,7 +39,7 @@ public class DownloadTextureTest : MonoBehaviour
         {
             yield return req.SendWebRequest();
 
-            Debug.Log(req.isNetworkError);
+            Debug.Log(req.result);
         }
 
         Resources.UnloadUnusedAssets();
