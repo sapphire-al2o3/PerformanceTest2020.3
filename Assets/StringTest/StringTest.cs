@@ -625,8 +625,6 @@ public class StringTest : MonoBehaviour
         {
             var sb = new System.Text.StringBuilder(100);
             Profiler.BeginSample("StringBuilder bool lower literal");
-            bool t = true;
-            bool f = false;
             for (int i = 0; i < 10; i++)
             {
                 string b = i % 2 == 0 ? "true" : "false";
