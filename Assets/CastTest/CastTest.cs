@@ -77,10 +77,14 @@ public class CastTest : MonoBehaviour
         Profiler.EndSample();
 
         // 24byte
-        Profiler.BeginSample("cast () long -> object");
-        long l = 1000;
-        o = l;
-        Profiler.EndSample();
+        {
+            Profiler.BeginSample("cast () long -> object");
+            long l = 1000;
+            object lo = l;
+            Profiler.EndSample();
+            
+            Debug.Log(lo);
+        }
 
         int[] array = new int[100];
         for (int k = 0; k < array.Length; k++)

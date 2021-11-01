@@ -16,13 +16,13 @@ public class IntToStringTest : MonoBehaviour
 
 	void Update()
 	{
-		// 32byte
+		// 28byte
 		Profiler.BeginSample("ToString");
 		countText0 = count0.ToString();
 		count0++;
 		Profiler.EndSample();
 
-		// 64byte
+		// 84byte
 		Profiler.BeginSample("StringBuilder");
 		sb.Length = 0;
 		sb.Append(count1);
