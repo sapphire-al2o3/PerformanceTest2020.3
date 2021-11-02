@@ -431,5 +431,25 @@ public class ArrayTest : MonoBehaviour
             }
             Profiler.EndSample();
         }
+
+        // 0B
+        {
+            List<int> list5 = new List<int>(4);
+            List<int> list6 = new List<int>(4);
+
+            Profiler.BeginSample("List.AddRange list");
+            list5.AddRange(list6);
+            Profiler.EndSample();
+        }
+
+        // 88byte
+        {
+            List<int> list5 = new List<int>(4);
+            Queue<int> queue = new Queue<int>(4);
+
+            Profiler.BeginSample("List.AddRange queue");
+            list5.AddRange(queue);
+            Profiler.EndSample();
+        }
     }
 }
