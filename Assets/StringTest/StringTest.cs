@@ -670,24 +670,48 @@ public class StringTest : MonoBehaviour
             Profiler.EndSample();
         }
 
-		{
-			Profiler.BeginSample("int + string");
-			string text = "abcdefg";
-			int n = 99;
+        {
+            Profiler.BeginSample("int + string");
+            string text = "abcdefg";
+            int n = 99;
 
-			string s = n + text;
+            string s = n + text;
 
-			Profiler.EndSample();
-		}
+            Profiler.EndSample();
+        }
 
-		{
-			Profiler.BeginSample("string + int");
-			string text = "abcdefg";
-			int n = 99;
+        {
+            Profiler.BeginSample("string + int");
+            string text = "abcdefg";
+            int n = 99;
 
-			string s = text + n;
+            string s = text + n;
 
-			Profiler.EndSample();
-		}
-	}
+            Profiler.EndSample();
+        }
+
+        {
+            Profiler.BeginSample("string.StartsWith");
+            string text = "abcdefg";
+
+            for (int i = 0; i < 10000; i++)
+            {
+                bool ret = text.StartsWith("abc");
+            }
+
+            Profiler.EndSample();
+        }
+
+        {
+            Profiler.BeginSample("string.StartsWith ordinal");
+            string text = "abcdefg";
+
+            for (int i = 0; i < 10000; i++)
+            {
+                bool ret = text.StartsWith("abc", System.StringComparison.Ordinal);
+            }
+
+            Profiler.EndSample();
+        }
+    }
 }
