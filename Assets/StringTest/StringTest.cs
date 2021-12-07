@@ -713,5 +713,25 @@ public class StringTest : MonoBehaviour
 
             Profiler.EndSample();
         }
+
+        {
+            Profiler.BeginSample("string.StartsWith char");
+            string text = "abcdefg";
+
+            for (int i = 0; i < 10000; i++)
+            {
+                bool ret = text.StartsWith('a');
+            }
+            Profiler.EndSample();
+        }
+    }
+}
+
+public static class StringUtil
+{
+    public static bool StartsWith(this string s, char c)
+    {
+        if (s == null) return false;
+        return s.IndexOf(c) == 0;
     }
 }
