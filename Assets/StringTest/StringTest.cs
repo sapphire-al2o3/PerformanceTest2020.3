@@ -724,6 +724,17 @@ public class StringTest : MonoBehaviour
             }
             Profiler.EndSample();
         }
+
+        {
+            Profiler.BeginSample("string.StartsWith char 2");
+            string text = "abcdefg";
+
+            for (int i = 0; i < 10000; i++)
+            {
+                bool ret = text.StartsWith2('a');
+            }
+            Profiler.EndSample();
+        }
     }
 }
 
@@ -733,5 +744,11 @@ public static class StringUtil
     {
         if (s == null) return false;
         return s.IndexOf(c) == 0;
+    }
+
+    public static bool StartsWith2(this string s, char c)
+    {
+        if (s == null) return false;
+        return s.Length > 0 && s[0] == c;
     }
 }
