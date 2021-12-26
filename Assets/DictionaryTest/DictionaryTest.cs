@@ -485,6 +485,9 @@ public class DictionaryTest : MonoBehaviour
                 d.Add(i, i);
             }
             Profiler.EndSample();
+            Profiler.BeginSample("capacity 4 -> 8");
+            d.Add(7, 7);
+            Profiler.EndSample();
         }
     }
 }
