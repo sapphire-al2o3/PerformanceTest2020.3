@@ -474,5 +474,17 @@ public class DictionaryTest : MonoBehaviour
             }
             Profiler.EndSample();
         }
+
+        // capacity = 4でも実際には7取られている
+        // 0B
+        {
+            Dictionary<int, int> d = new Dictionary<int, int>(4);
+            Profiler.BeginSample("capacity 4");
+            for (int i = 0; i < 7; i++)
+            {
+                d.Add(i, i);
+            }
+            Profiler.EndSample();
+        }
     }
 }
