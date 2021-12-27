@@ -5,7 +5,6 @@ using UnityEngine.Profiling;
 
 public class EncodingTest : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         // 19.6KB
@@ -30,11 +29,5 @@ public class EncodingTest : MonoBehaviour
             }
             Profiler.EndSample();
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
