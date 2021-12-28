@@ -49,7 +49,7 @@ public class DictionaryTest : MonoBehaviour
     void Start()
     {
         Dictionary<int, int> dic = new Dictionary<int, int>();
-        
+
         for (int i = 0; i < 10000; i++)
         {
             dic.Add(i, i);
@@ -487,6 +487,19 @@ public class DictionaryTest : MonoBehaviour
             Profiler.EndSample();
             Profiler.BeginSample("capacity 4 -> 8");
             d.Add(7, 7);
+            Profiler.EndSample();
+        }
+
+        {
+            Profiler.BeginSample("capacity 3000");
+            Dictionary<int, int> d = new Dictionary<int, int>(3000);
+            Profiler.EndSample();
+        }
+
+        {
+            Profiler.BeginSample("capacity 2801 + 239");
+            Dictionary<int, int> d = new Dictionary<int, int>(2801);
+            Dictionary<int, int> d2 = new Dictionary<int, int>(239);
             Profiler.EndSample();
         }
     }
