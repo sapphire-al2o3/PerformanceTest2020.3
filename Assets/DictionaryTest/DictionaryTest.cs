@@ -490,12 +490,14 @@ public class DictionaryTest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 66.0KB
         {
             Profiler.BeginSample("capacity 3000");
             Dictionary<int, int> d = new Dictionary<int, int>(3000);
             Profiler.EndSample();
         }
 
+        // 59.7KB
         {
             Profiler.BeginSample("capacity 2801 + 239");
             Dictionary<int, int> d = new Dictionary<int, int>(2801);
