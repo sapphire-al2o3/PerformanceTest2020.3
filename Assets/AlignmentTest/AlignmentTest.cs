@@ -169,6 +169,24 @@ public class AlignmentTest : MonoBehaviour
     }
 
     // 48byte
+    class C8_2
+    {
+        int a;
+        long b;
+        int c;
+        string d;
+    }
+
+    // 40byte
+    class C8_3
+    {
+        int a;
+        string b;
+        int c;
+        long d;
+    }
+
+    // 48byte
     class C9
     {
         int a;
@@ -203,6 +221,15 @@ public class AlignmentTest : MonoBehaviour
         int b;
         long c;
         long d;
+    }
+
+    // 40byte
+    class C13
+    {
+        int a;
+        C1 b;
+        int c;
+        C1 d;
     }
 
 
@@ -260,6 +287,14 @@ public class AlignmentTest : MonoBehaviour
         var c8 = new C8();
         Profiler.EndSample();
 
+        Profiler.BeginSample("C8_2");
+        var c8_2 = new C8_2();
+        Profiler.EndSample();
+
+        Profiler.BeginSample("C8_3");
+        var c8_3 = new C8_3();
+        Profiler.EndSample();
+
         Profiler.BeginSample("C9");
         var c9 = new C9();
         Profiler.EndSample();
@@ -274,6 +309,10 @@ public class AlignmentTest : MonoBehaviour
 
         Profiler.BeginSample("C12");
         var c12 = new C12();
+        Profiler.EndSample();
+
+        Profiler.BeginSample("C13");
+        var c13 = new C13();
         Profiler.EndSample();
     }
 }
