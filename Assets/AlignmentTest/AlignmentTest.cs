@@ -159,6 +159,8 @@ public class AlignmentTest : MonoBehaviour
         byte c;
     }
 
+    // エディタで実行すると参照型はクラスの先頭に配置される？
+
     // 40byte
     class C8
     {
