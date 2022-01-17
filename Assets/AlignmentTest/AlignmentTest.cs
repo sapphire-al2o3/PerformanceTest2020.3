@@ -162,6 +162,7 @@ public class AlignmentTest : MonoBehaviour
     // エディタで実行すると参照型はクラスの先頭に配置される？
 
     // 40byte
+    // Android IL2CPPだと48byte
     class C8
     {
         int a;
@@ -200,6 +201,15 @@ public class AlignmentTest : MonoBehaviour
     // 48byte
     [StructLayout(LayoutKind.Sequential)]
     class C10
+    {
+        int a;
+        string b;
+        int c;
+        string d;
+    }
+
+    [StructLayout(LayoutKind.Auto)]
+    class C10_A
     {
         int a;
         string b;
