@@ -89,31 +89,35 @@ public class ArrayTest : MonoBehaviour
         }
 
         // 496 byte
-        Profiler.BeginSample("int[,]");
-        int[,] array0 = new int[10, 10];
-
-        for (int i = 0; i < array0.GetLength(0); i++)
         {
-            for (int j = 0; j < array0.GetLength(1); j++)
+            Profiler.BeginSample("int[,]");
+            int[,] array0 = new int[10, 10];
+
+            for (int i = 0; i < array0.GetLength(0); i++)
             {
-                array0[i, j] = 0;
+                for (int j = 0; j < array0.GetLength(1); j++)
+                {
+                    array0[i, j] = 0;
+                }
             }
+            Profiler.EndSample();
         }
-        Profiler.EndSample();
 
         // 0.8 Kbyte
-        Profiler.BeginSample("int[][]");
-        int[][] array1 = new int[10][];
-
-        for (int i = 0; i < array1.Length; i++)
         {
-            array1[i] = new int[10];
-            for (int j = 0; j < array1[i].Length; j++)
+            Profiler.BeginSample("int[][]");
+            int[][] array1 = new int[10][];
+
+            for (int i = 0; i < array1.Length; i++)
             {
-                array1[i][j] = 0;
+                array1[i] = new int[10];
+                for (int j = 0; j < array1[i].Length; j++)
+                {
+                    array1[i][j] = 0;
+                }
             }
+            Profiler.EndSample();
         }
-        Profiler.EndSample();
 
         // 40byte
         Profiler.BeginSample("string[0]");
