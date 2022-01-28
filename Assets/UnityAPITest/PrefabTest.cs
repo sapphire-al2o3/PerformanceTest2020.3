@@ -19,6 +19,7 @@ public class PrefabTest : MonoBehaviour
             var go = GameObject.Instantiate(prefab);
             Profiler.EndSample();
 
+            // 初回のtransformアクセスはキャッシュが作られる(40byte)
             Profiler.BeginSample("SetParent");
             go.transform.SetParent(transform);
             Profiler.EndSample();
