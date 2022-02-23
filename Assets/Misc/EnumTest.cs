@@ -19,7 +19,7 @@ public class EnumTest : MonoBehaviour
         // 0byte
         {
             Profiler.BeginSample("Enum.HasFlags");
-            Flags flag = Flags.A;
+            Flags flag = Flags.A | Flags.B;
             bool ret = flag.HasFlag(Flags.B);
             for (int i = 0; i < 100; i++)
             {
