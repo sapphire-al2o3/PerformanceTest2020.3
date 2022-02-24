@@ -1,0 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Profiling;
+
+public class MaterialPropertyBlockTest : MonoBehaviour
+{
+    void Start()
+    {
+        // 24byte
+        Profiler.BeginSample("MaterialPropertyBlock");
+        MaterialPropertyBlock materialPropertyBlock = new MaterialPropertyBlock();
+        Profiler.EndSample();
+
+        // 0byte
+        Profiler.BeginSample("MaterialPropertyBlock.SetColor");
+        materialPropertyBlock.SetColor("_Color", Color.black);
+        Profiler.EndSample();
+
+        var renderer = GetComponent<Renderer>();
+    }
+}
