@@ -14,9 +14,14 @@ public class MaterialPropertyBlockTest : MonoBehaviour
 
         // 0byte
         Profiler.BeginSample("MaterialPropertyBlock.SetColor");
-        materialPropertyBlock.SetColor("_Color", Color.black);
+        materialPropertyBlock.SetColor("_Color", Color.blue);
         Profiler.EndSample();
 
         var renderer = GetComponent<Renderer>();
+
+        // 0byte
+        Profiler.BeginSample("Renderer.SetPropertyBlock");
+        renderer.SetPropertyBlock(materialPropertyBlock);
+        Profiler.EndSample();
     }
 }
