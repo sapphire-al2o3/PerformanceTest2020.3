@@ -162,6 +162,27 @@ public class StringTest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 2.6KB
+        {
+            Profiler.BeginSample("split separator no cache");
+            for (int i = 0; i < 10; i++)
+            {
+                array = s1.Split(',');
+            }
+            Profiler.EndSample();
+        }
+
+        // 2.3KB
+        {
+            Profiler.BeginSample("split separator cache");
+            char[] sep = { ',' };
+            for (int i = 0; i < 10; i++)
+            {
+                array = s1.Split(sep);
+            }
+            Profiler.EndSample();
+        }
+
         string[] num = { "0", "1", "2", "3", "4", "5" };
 
         {
