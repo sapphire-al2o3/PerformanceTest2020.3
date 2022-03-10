@@ -290,6 +290,15 @@ public class UnityAPITest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 0byte
+        {
+            var shader = Shader.Find("Standard");
+            var mat = new Material(shader);
+            Profiler.BeginSample("Material.shader");
+            var tmp = mat.shader;
+            Profiler.EndSample();
+        }
+
         // 40byte
         {
             Profiler.BeginSample("LayerToName");
