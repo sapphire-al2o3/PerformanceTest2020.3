@@ -76,9 +76,18 @@ public class UnityAPITest : MonoBehaviour
         Profiler.EndSample();
 
         // 32byte
-        Profiler.BeginSample("GetComponents<Collider>");
-        var rs = go.GetComponents<Collider>();
-        Profiler.EndSample();
+        {
+            Profiler.BeginSample("GetComponents<Collider>");
+            var rs = go.GetComponents<Collider>();
+            Profiler.EndSample();
+        }
+
+        // 32byte
+        {
+            Profiler.BeginSample("GetComponents<Collider>");
+            var rs = go.GetComponents<Collider>();
+            Profiler.EndSample();
+        }
 
         // 0.6KB
         // 存在しないComponentを取得しようとするとメモリがとられる？
@@ -92,6 +101,30 @@ public class UnityAPITest : MonoBehaviour
         {
             Profiler.BeginSample("GetComponent<ParticleTest>");
             var p = go.GetComponent<ParticleTest>();
+            Profiler.EndSample();
+        }
+
+        {
+            Profiler.BeginSample("GetComponent<ParticleTest> x100");
+            for (int i = 0; i < 100; i++)
+            {
+                var p = go.GetComponent<ParticleTest>();
+            }
+            Profiler.EndSample();
+        }
+
+        {
+            Profiler.BeginSample("TryGetComponent<ParticleTest>");
+            go.TryGetComponent<ParticleTest>(out var p);
+            Profiler.EndSample();
+        }
+
+        {
+            Profiler.BeginSample("TryGetComponent<ParticleTest> x100");
+            for (int i = 0; i < 100; i++)
+            {
+                go.TryGetComponent<ParticleTest>(out var p);
+            }
             Profiler.EndSample();
         }
 
