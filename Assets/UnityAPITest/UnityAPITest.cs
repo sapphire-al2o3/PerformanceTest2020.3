@@ -59,6 +59,8 @@ public class UnityAPITest : MonoBehaviour
         }
         Profiler.EndSample();
 
+        var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
+
         // 24byte
         Profiler.BeginSample("GameObject");
         var go = new GameObject();
@@ -98,17 +100,67 @@ public class UnityAPITest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 0.6KB
         {
             Profiler.BeginSample("GetComponent<ParticleTest>");
             var p = go.GetComponent<ParticleTest>();
             Profiler.EndSample();
         }
 
+        // 59.2KB
         {
             Profiler.BeginSample("GetComponent<ParticleTest> x100");
             for (int i = 0; i < 100; i++)
             {
                 var p = go.GetComponent<ParticleTest>();
+            }
+            Profiler.EndSample();
+        }
+
+        // 40 byte
+        {
+            Profiler.BeginSample("GetComponent<Renderer> x1000");
+            for (int i = 0; i < 1000; i++)
+            {
+                var p = cube.GetComponent<Renderer>();
+            }
+            Profiler.EndSample();
+        }
+
+        // 0byte
+        {
+            Profiler.BeginSample("GetComponent(typeof(Renderer)) x1000");
+            for (int i = 0; i < 1000; i++)
+            {
+                var p = cube.GetComponent(typeof(Renderer)) as Renderer;
+            }
+            Profiler.EndSample();
+        }
+
+        // 0byte
+        {
+            Profiler.BeginSample("TryGetComponent<Renderer> x1000");
+            for (int i = 0; i < 1000; i++)
+            {
+                bool ret = cube.TryGetComponent<Renderer>(out var p);
+            }
+            Profiler.EndSample();
+        }
+
+        {
+            Profiler.BeginSample("GetComponent<BoxCollider> x1000");
+            for (int i = 0; i < 1000; i++)
+            {
+                var p = cube.GetComponent<BoxCollider>();
+            }
+            Profiler.EndSample();
+        }
+
+        {
+            Profiler.BeginSample("TryGetComponent<BoxCollider> x1000");
+            for (int i = 0; i < 1000; i++)
+            {
+                bool ret = cube.TryGetComponent<BoxCollider>(out var p);
             }
             Profiler.EndSample();
         }
