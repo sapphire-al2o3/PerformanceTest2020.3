@@ -107,6 +107,13 @@ public class UnityAPITest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 0byte
+        {
+            Profiler.BeginSample("TryGetComponent<ParticleTest>");
+            go.TryGetComponent<ParticleTest>(out var p);
+            Profiler.EndSample();
+        }
+
         // 59.2KB
         {
             Profiler.BeginSample("GetComponent<ParticleTest> x100");
@@ -162,12 +169,6 @@ public class UnityAPITest : MonoBehaviour
             {
                 bool ret = cube.TryGetComponent<BoxCollider>(out var p);
             }
-            Profiler.EndSample();
-        }
-
-        {
-            Profiler.BeginSample("TryGetComponent<ParticleTest>");
-            go.TryGetComponent<ParticleTest>(out var p);
             Profiler.EndSample();
         }
 
