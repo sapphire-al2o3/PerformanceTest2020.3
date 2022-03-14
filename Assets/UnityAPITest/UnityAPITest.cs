@@ -154,6 +154,7 @@ public class UnityAPITest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 40byte
         {
             Profiler.BeginSample("GetComponent<BoxCollider> x1000");
             for (int i = 0; i < 1000; i++)
@@ -163,6 +164,7 @@ public class UnityAPITest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 0byte
         {
             Profiler.BeginSample("TryGetComponent<BoxCollider> x1000");
             for (int i = 0; i < 1000; i++)
@@ -172,6 +174,7 @@ public class UnityAPITest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 0byte
         {
             Profiler.BeginSample("TryGetComponent<ParticleTest> x100");
             for (int i = 0; i < 100; i++)
