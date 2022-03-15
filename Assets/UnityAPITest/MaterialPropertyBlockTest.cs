@@ -23,5 +23,15 @@ public class MaterialPropertyBlockTest : MonoBehaviour
         Profiler.BeginSample("Renderer.SetPropertyBlock");
         renderer.SetPropertyBlock(materialPropertyBlock);
         Profiler.EndSample();
+
+        // 0byte
+        Profiler.BeginSample("Renderer.HasPropertyBlock");
+        bool hasMPB = renderer.HasPropertyBlock();
+        Profiler.EndSample();
+
+        // 0byte
+        Profiler.BeginSample("Renderer.GetPropertyBlock");
+        renderer.GetPropertyBlock(materialPropertyBlock);
+        Profiler.EndSample();
     }
 }
