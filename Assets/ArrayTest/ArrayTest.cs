@@ -56,6 +56,16 @@ public class ArrayTest : MonoBehaviour
         }
     }
 
+    List<T> CreateEmptyList<T>(int n)
+    {
+        var list = new List<T>(n);
+        for (int i = 0; i < n; i++)
+        {
+            list.Add(default(T));
+        }
+        return list;
+    }
+
     void Start()
     {
         // 32 byte
@@ -298,6 +308,12 @@ public class ArrayTest : MonoBehaviour
             {
                 list5.Add(0);
             }
+            Profiler.EndSample();
+        }
+
+        {
+            Profiler.BeginSample("List init 0 func");
+            List<int> list5 = CreateEmptyList<int>(1000);
             Profiler.EndSample();
         }
 
