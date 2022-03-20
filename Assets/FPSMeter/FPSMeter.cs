@@ -28,7 +28,10 @@ public class FPSMeter : MonoBehaviour
     int sizeID;
     int colorID;
     Mesh mesh;
-    
+
+    [SerializeField]
+    Camera targetCamera;
+    CommandBuffer commandBuffer;
 
     void OnDestroy()
     {
@@ -40,6 +43,11 @@ public class FPSMeter : MonoBehaviour
 
     void Start()
     {
+        if (targetCamera == null)
+        {
+            targetCamera = Camera.main;
+        }
+
         mesh = new Mesh();
         int[] indices = new int[6];
         Vector2[] uvs = new Vector2[4];
@@ -76,12 +84,28 @@ public class FPSMeter : MonoBehaviour
         defaultColor = mat.GetColor(colorID);
 
         //var sampler = UnityEngine.Profiling.CustomSampler.Create("hoge", true);
-        //var commandBuffer = new CommandBuffer();
+        commandBuffer = new CommandBuffer();
+        commandBuffer.DrawMesh(mesh, Matrix4x4.identity, mat);
         //commandBuffer.BeginSample(sampler);
         //commandBuffer.EndSample(sampler);
-        //Camera.main.AddCommandBuffer(CameraEvent.AfterImageEffects, commandBuffer);
+        targetCamera.AddCommandBuffer(CameraEvent.AfterForwardAlpha, commandBuffer);
 
-        
+    }
+
+    void OnEnable()
+    {
+        if (targetCamera != null && commandBuffer != null)
+        {
+            targetCamera.AddCommandBuffer(CameraEvent.AfterForwardAlpha, commandBuffer);
+        }
+    }
+
+    void OnDisable()
+    {
+        if (targetCamera != null)
+        {
+            targetCamera.RemoveCommandBuffer(CameraEvent.AfterForwardAlpha, commandBuffer);
+        }
     }
 
     void Update()
