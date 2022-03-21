@@ -15,6 +15,10 @@ public class FPSMeter : MonoBehaviour
 
     float frameDeltaTime = 0.0f;
     float prevTime = 0.0f;
+
+    [SerializeField]
+    float height = 0.05f;
+
     Vector4 size;
     Material mat;
 
@@ -79,6 +83,7 @@ public class FPSMeter : MonoBehaviour
         mat = GetComponent<Renderer>().material;
         size = mat.GetVector(sizeID);
         size.x = 1.0f;
+        size.y = height;
         mat.SetVector(sizeID, size);
         colorID = Shader.PropertyToID("_Color");
         defaultColor = mat.GetColor(colorID);
@@ -124,6 +129,7 @@ public class FPSMeter : MonoBehaviour
         float time = elapsed / frame;
 
         size.x = time * targetFrameRate * 0.5f;
+        size.y = height;
         mat.SetVector(sizeID, size);
 
         //Debug.Log(frame / elapsed);
