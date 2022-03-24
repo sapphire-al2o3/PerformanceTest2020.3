@@ -83,7 +83,7 @@ public class FPSMeter : MonoBehaviour
         mat = GetComponent<Renderer>().material;
         size = mat.GetVector(sizeID);
         size.x = 1.0f;
-        //size.y = height;
+        size.y = height;
         mat.SetVector(sizeID, size);
         colorID = Shader.PropertyToID("_Color");
         defaultColor = mat.GetColor(colorID);
@@ -91,18 +91,18 @@ public class FPSMeter : MonoBehaviour
         //var sampler = UnityEngine.Profiling.CustomSampler.Create("hoge", true);
         commandBuffer = new CommandBuffer();
         commandBuffer.DrawMesh(mesh, Matrix4x4.identity, mat);
-		//commandBuffer.BeginSample(sampler);
-		//commandBuffer.EndSample(sampler);
-		targetCamera.AddCommandBuffer(CameraEvent.AfterForwardAlpha, commandBuffer);
+        //commandBuffer.BeginSample(sampler);
+        //commandBuffer.EndSample(sampler);
+        targetCamera.AddCommandBuffer(CameraEvent.AfterForwardAlpha, commandBuffer);
 
-	}
+    }
 
     void OnEnable()
     {
         if (targetCamera != null && commandBuffer != null)
         {
-			targetCamera.AddCommandBuffer(CameraEvent.AfterForwardAlpha, commandBuffer);
-		}
+            targetCamera.AddCommandBuffer(CameraEvent.AfterForwardAlpha, commandBuffer);
+        }
     }
 
     void OnDisable()
@@ -129,7 +129,7 @@ public class FPSMeter : MonoBehaviour
         float time = elapsed / frame;
 
         size.x = time * targetFrameRate * 0.5f;
-        //size.y = height;
+        size.y = height;
         mat.SetVector(sizeID, size);
 
         //Debug.Log(frame / elapsed);
