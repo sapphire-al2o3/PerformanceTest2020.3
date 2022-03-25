@@ -2,7 +2,7 @@
 {
 	Properties
 	{
-		_Color ("Color", Color) = (0.0, 0.0, 0.0, 1.0)
+		_Color ("Color", Color) = (0.0, 1.0, 0.0, 1.0)
 		_Size ("Size", Vector) = (0.1, 1.0, 0.0, 0.0)
 	}
 	SubShader
