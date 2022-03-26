@@ -8,6 +8,8 @@ public class FPSMeter : MonoBehaviour
     [SerializeField]
     float targetFrameRate = 60.0f;
     [SerializeField]
+    Color color = new Color(0.0f, 1.0f, 0.0f);
+    [SerializeField]
     Color overColor;
 
     [SerializeField]
@@ -27,8 +29,6 @@ public class FPSMeter : MonoBehaviour
     float elapsed = 0.0f;
     int frame = 0;
 
-    Color defaultColor;
-
     int sizeID;
     int colorID;
     Mesh mesh;
@@ -42,6 +42,10 @@ public class FPSMeter : MonoBehaviour
         if (mesh != null)
         {
             Destroy(mesh);
+        }
+        if (mat != null)
+        {
+            Destroy(mat);
         }
     }
 
@@ -77,16 +81,14 @@ public class FPSMeter : MonoBehaviour
         mesh.triangles = indices;
         mesh.uv = uvs;
 
-        //GetComponent<MeshFilter>().mesh = mesh;
-
         sizeID = Shader.PropertyToID("_Size");
-        mat = GetComponent<Renderer>().material;
+        //mat = GetComponent<Renderer>().material;
+        mat = new Material(Shader.Find("Unlit/MeterShader"));
         size = mat.GetVector(sizeID);
         size.x = 1.0f;
         size.y = height;
         mat.SetVector(sizeID, size);
         colorID = Shader.PropertyToID("_Color");
-        defaultColor = mat.GetColor(colorID);
 
         //var sampler = UnityEngine.Profiling.CustomSampler.Create("hoge", true);
         commandBuffer = new CommandBuffer();
@@ -134,7 +136,7 @@ public class FPSMeter : MonoBehaviour
 
         //Debug.Log(frame / elapsed);
 
-        mat.SetColor(colorID, time > 1.0f / overFrameRate ? overColor : defaultColor);
+        mat.SetColor(colorID, time > 1.0f / overFrameRate ? overColor : color);
 
         frame = 0;
         elapsed = 0.0f;
