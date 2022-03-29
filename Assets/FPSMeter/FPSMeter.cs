@@ -82,9 +82,7 @@ public class FPSMeter : MonoBehaviour
         mesh.uv = uvs;
 
         sizeID = Shader.PropertyToID("_Size");
-        //mat = GetComponent<Renderer>().material;
         mat = new Material(Shader.Find("Unlit/MeterShader"));
-        size = mat.GetVector(sizeID);
         size.x = 1.0f;
         size.y = height;
         mat.SetVector(sizeID, size);
