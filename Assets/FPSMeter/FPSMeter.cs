@@ -37,7 +37,16 @@ public class FPSMeter : MonoBehaviour
     Camera targetCamera;
     CommandBuffer commandBuffer;
 
-    void OnDestroy()
+    public enum Anchor
+    {
+        Top,
+        Bottom,
+        Left,
+        Right
+    }
+
+
+	void OnDestroy()
     {
         if (mesh != null)
         {
