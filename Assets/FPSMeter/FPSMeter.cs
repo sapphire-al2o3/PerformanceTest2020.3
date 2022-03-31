@@ -37,6 +37,9 @@ public class FPSMeter : MonoBehaviour
     Camera targetCamera;
     CommandBuffer commandBuffer;
 
+    [SerializeField]
+    Anchor anchor = Anchor.Top;
+
     public enum Anchor
     {
         Top,
@@ -94,14 +97,19 @@ public class FPSMeter : MonoBehaviour
         mat = new Material(Shader.Find("Unlit/MeterShader"));
         size.x = 1.0f;
         size.y = height;
+
+        if (anchor == Anchor.Bottom)
+        {
+            size.w = 1.0f - height;
+        }
         mat.SetVector(sizeID, size);
         colorID = Shader.PropertyToID("_Color");
 
-        //var sampler = UnityEngine.Profiling.CustomSampler.Create("hoge", true);
+        var sampler = UnityEngine.Profiling.CustomSampler.Create("hoge", true);
         commandBuffer = new CommandBuffer();
         commandBuffer.DrawMesh(mesh, Matrix4x4.identity, mat);
-        //commandBuffer.BeginSample(sampler);
-        //commandBuffer.EndSample(sampler);
+        commandBuffer.BeginSample(sampler);
+        commandBuffer.EndSample(sampler);
         targetCamera.AddCommandBuffer(CameraEvent.AfterForwardAlpha, commandBuffer);
 
     }
@@ -139,6 +147,11 @@ public class FPSMeter : MonoBehaviour
 
         size.x = time * targetFrameRate * 0.5f;
         size.y = height;
+        size.w = 0.0f;
+        if (anchor == Anchor.Bottom)
+        {
+            size.w = 1.0f - height;
+        }
         mat.SetVector(sizeID, size);
 
         //Debug.Log(frame / elapsed);
