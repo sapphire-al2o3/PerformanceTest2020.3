@@ -152,6 +152,12 @@ public class FPSMeter : MonoBehaviour
         {
             size.w = 1.0f - height;
         }
+        else if (anchor == Anchor.Left)
+        {
+            size.x = height;
+            size.y = time * targetFrameRate * 0.5f;
+            size.w = 0.0f;
+        }
         mat.SetVector(sizeID, size);
 
         //Debug.Log(frame / elapsed);
