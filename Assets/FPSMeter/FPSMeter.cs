@@ -97,11 +97,6 @@ public class FPSMeter : MonoBehaviour
         mat = new Material(Shader.Find("Unlit/MeterShader"));
         size.x = 1.0f;
         size.y = height;
-
-        if (anchor == Anchor.Bottom)
-        {
-            size.w = 1.0f - height;
-        }
         mat.SetVector(sizeID, size);
         colorID = Shader.PropertyToID("_Color");
 
@@ -145,17 +140,25 @@ public class FPSMeter : MonoBehaviour
 
         float time = elapsed / frame;
 
-        size.x = time * targetFrameRate * 0.5f;
-        size.y = height;
-        size.w = 0.0f;
-        if (anchor == Anchor.Bottom)
+        if (anchor == Anchor.Top)
         {
+            size.x = time * targetFrameRate * 0.5f;
+            size.y = height;
+            size.z = 0.0f;
+            size.w = 0.0f;
+        }
+        else if (anchor == Anchor.Bottom)
+        {
+            size.x = time * targetFrameRate * 0.5f;
+            size.y = height;
+            size.z = 0.0f;
             size.w = 1.0f - height;
         }
         else if (anchor == Anchor.Left)
         {
             size.x = height;
             size.y = time * targetFrameRate * 0.5f;
+            size.z = 0.0f;
             size.w = 0.0f;
         }
         else if (anchor == Anchor.Right)
