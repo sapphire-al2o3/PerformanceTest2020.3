@@ -100,11 +100,8 @@ public class FPSMeter : MonoBehaviour
         mat.SetVector(sizeID, size);
         colorID = Shader.PropertyToID("_Color");
 
-        var sampler = UnityEngine.Profiling.CustomSampler.Create("hoge", true);
         commandBuffer = new CommandBuffer();
         commandBuffer.DrawMesh(mesh, Matrix4x4.identity, mat);
-        commandBuffer.BeginSample(sampler);
-        commandBuffer.EndSample(sampler);
         targetCamera.AddCommandBuffer(CameraEvent.AfterForwardAlpha, commandBuffer);
 
     }
