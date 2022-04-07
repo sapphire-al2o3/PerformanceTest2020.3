@@ -234,7 +234,7 @@ public class DictionaryTest : MonoBehaviour
             Profiler.EndSample();
         }
 
-        // 217.3KB
+        // 197.5KB
         Profiler.BeginSample("dictionary<int, int>(10000)");
         dic1 = new Dictionary<int, int>(10000);
         Profiler.EndSample();
@@ -254,7 +254,7 @@ public class DictionaryTest : MonoBehaviour
         Dictionary<string, string> dic4 = new Dictionary<string, string>();
         Profiler.EndSample();
 
-        // 304.1KB
+        // 276.4KB
         Profiler.BeginSample("dictionary<string, string>(10000)");
         dic4 = new Dictionary<string, string>(10000);
         Profiler.EndSample();
@@ -267,9 +267,17 @@ public class DictionaryTest : MonoBehaviour
         }
         Profiler.EndSample();
 
-        // 234.6KB
+        // 39.1KB
         Profiler.BeginSample("reset dictionary (new List)");
         foreach (var key in new List<int>(dic.Keys))
+        {
+            dic[key] = 0;
+        }
+        Profiler.EndSample();
+
+        // 39.1KB
+        Profiler.BeginSample("reset dictionary (ToList)");
+        foreach (var key in dic.Keys.ToList())
         {
             dic[key] = 0;
         }
