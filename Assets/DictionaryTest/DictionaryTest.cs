@@ -259,11 +259,11 @@ public class DictionaryTest : MonoBehaviour
         dic4 = new Dictionary<string, string>(10000);
         Profiler.EndSample();
 
-        // 234.6KB
+        // 39.1KB
         Profiler.BeginSample("reset dictionary (ToArray)");
-        //foreach (var key in dic.Keys.to)
+        foreach (var key in dic.Keys.ToArray())
         {
-            //	dic[key] = 0;
+            dic[key] = 0;
         }
         Profiler.EndSample();
 
