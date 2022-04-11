@@ -142,6 +142,7 @@ public class DictionaryTest : MonoBehaviour
         }
         Profiler.EndSample();
 
+        // 0B
         {
             Profiler.BeginSample("dictionary<EnumType, int>.get_item");
             for (int i = 0; i < 100; i++)
@@ -153,6 +154,7 @@ public class DictionaryTest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 0B
         {
             Profiler.BeginSample("dictionary<EnumType, int>.ContainsKey");
             for (int i = 0; i < 100; i++)
@@ -165,6 +167,7 @@ public class DictionaryTest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 96B
         {
             Profiler.BeginSample("dictionary<EnumType, int> foreach");
             for (int i = 0; i < 100; i++)
@@ -235,21 +238,23 @@ public class DictionaryTest : MonoBehaviour
         }
 
         // 197.5KB
-        Profiler.BeginSample("dictionary<int, int>(10000)");
-        dic1 = new Dictionary<int, int>(10000);
-        Profiler.EndSample();
+        {
+            Profiler.BeginSample("dictionary<int, int>(10000)");
+            dic1 = new Dictionary<int, int>(10000);
+            Profiler.EndSample();
+        }
 
-        // 0.5KB
+        // 80KB
         Profiler.BeginSample("dictionary<int, string>");
         Dictionary<int, string> dic3 = new Dictionary<int, string>();
         Profiler.EndSample();
 
-        // 0.5KB
+        // 80B
         Profiler.BeginSample("dictionary<string, int>");
         var dicsi = new Dictionary<string, int>();
         Profiler.EndSample();
 
-        // 0.6KB
+        // 80B
         Profiler.BeginSample("dictionary<string, string>");
         Dictionary<string, string> dic4 = new Dictionary<string, string>();
         Profiler.EndSample();
@@ -402,6 +407,7 @@ public class DictionaryTest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 0B
         {
             Profiler.BeginSample("Dictionary get_item");
             for (int i = 0; i < 10000; i++)
@@ -414,6 +420,7 @@ public class DictionaryTest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 0B
         {
             Profiler.BeginSample("IDictionary get_item");
             IDictionary idic = dic4;
