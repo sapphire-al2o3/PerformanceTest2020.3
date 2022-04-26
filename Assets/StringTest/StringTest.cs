@@ -379,6 +379,14 @@ public class StringTest : MonoBehaviour
 
         // 28byte
         {
+            Profiler.BeginSample("char -> string (ToString)");
+            char c = 'a';
+            string s = c.ToString();
+            Profiler.EndSample();
+        }
+
+        // 28byte
+        {
             Profiler.BeginSample("last char (SubString)");
             string s = s0.Substring(s0.Length - 1);
             Profiler.EndSample();
