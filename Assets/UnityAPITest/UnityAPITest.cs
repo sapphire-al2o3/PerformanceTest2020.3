@@ -388,7 +388,23 @@ public class UnityAPITest : MonoBehaviour
             Profiler.EndSample();
         }
 
-        // 296byte
+        // 40byte
+        {
+            cube.TryGetComponent<Renderer>(out var p);
+            Profiler.BeginSample("Renderer.sharedMaterials");
+            var mats = p.sharedMaterials;
+            Profiler.EndSample();
+        }
+
+        // 40byte
+        {
+            cube.TryGetComponent<Renderer>(out var p);
+            Profiler.BeginSample("Renderer.sharedMaterials 2");
+            var mats = p.sharedMaterials;
+            Profiler.EndSample();
+        }
+
+        // 80byte
         {
             cube.TryGetComponent<Renderer>(out var p);
             Profiler.BeginSample("Renderer.materials");
