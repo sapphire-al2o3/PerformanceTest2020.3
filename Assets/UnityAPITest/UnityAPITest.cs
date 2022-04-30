@@ -66,7 +66,7 @@ public class UnityAPITest : MonoBehaviour
         var go = new GameObject();
         Profiler.EndSample();
 
-        // 0.5KB
+        // 112byte
         // IL2CPP build 24byte
         Profiler.BeginSample("AddComponent");
         go.AddComponent<EmptyComponent>();
@@ -243,7 +243,7 @@ public class UnityAPITest : MonoBehaviour
 
         Debug.Assert(cc != null);
 
-        // 368byte
+        // 416byte
         {
             var animator = GetComponent<Animator>();
             int hash = 0;
