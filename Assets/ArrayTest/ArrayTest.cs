@@ -471,5 +471,13 @@ public class ArrayTest : MonoBehaviour
             list5.AddRange(queue);
             Profiler.EndSample();
         }
+
+        // 80byte
+        {
+            List<int> list5 = new List<int>();
+            Profiler.BeginSample("List.AsReadOnly");
+            var readonlyList = list5.AsReadOnly();
+            Profiler.EndSample();
+        }
     }
 }
