@@ -299,7 +299,15 @@ public class UnityAPITest : MonoBehaviour
             var animator = GetComponent<Animator>();
 
             Profiler.BeginSample("Animator.GetCurrentAnimatorStateInfo");
-            var info = animator.GetCurrentAnimatorStateInfo(0);
+            AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
+            Profiler.EndSample();
+        }
+
+        {
+            var animator = GetComponent<Animator>();
+
+            Profiler.BeginSample("Animator.GetNextAnimatorStateInfo");
+            AnimatorStateInfo info = animator.GetNextAnimatorStateInfo(0);
             Profiler.EndSample();
         }
 
@@ -308,7 +316,7 @@ public class UnityAPITest : MonoBehaviour
             var animator = GetComponent<Animator>();
 
             Profiler.BeginSample("Animator.GetCurrentAnimatorClipInfo");
-            var clipInfo = animator.GetCurrentAnimatorClipInfo(0);
+            AnimatorClipInfo[] clipInfo = animator.GetCurrentAnimatorClipInfo(0);
             Profiler.EndSample();
         }
 
