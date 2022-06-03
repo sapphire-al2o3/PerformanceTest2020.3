@@ -329,6 +329,15 @@ public class UnityAPITest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 0byte
+        {
+            var animator = GetComponent<Animator>();
+
+            Profiler.BeginSample("Animator.runtimeAnimatorController");
+            var controller = animator.runtimeAnimatorController;
+            Profiler.EndSample();
+        }
+
         // 42byte
         {
             Profiler.BeginSample("tag equals");
