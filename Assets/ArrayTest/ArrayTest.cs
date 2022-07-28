@@ -272,6 +272,13 @@ public class ArrayTest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 要素がobjectにキャストされている
+        // 2.0KB
+        {
+            Profiler.BeginSample("Reverse");
+            Array.Reverse(array);
+            Profiler.EndSample();
+        }
 
         // 8.3Kbyte
         {
