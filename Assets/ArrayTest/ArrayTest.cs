@@ -91,6 +91,12 @@ public class ArrayTest : MonoBehaviour
         }
         Profiler.EndSample();
 
+        string[] arrayString = new string[100];
+        for (int i = 0; i < arrayString.Length; i++)
+        {
+            arrayString[i] = i.ToString();
+        }
+
         // 32 byte
         {
             Profiler.BeginSample("long[0]");
@@ -277,6 +283,20 @@ public class ArrayTest : MonoBehaviour
         {
             Profiler.BeginSample("Reverse");
             Array.Reverse(array);
+            Profiler.EndSample();
+        }
+
+        // 0.6KB
+        {
+            Profiler.BeginSample("Enumerable.Reverse");
+            array = array.Reverse().ToArray();
+            Profiler.EndSample();
+        }
+
+        // 0byte
+        {
+            Profiler.BeginSample("Reverse string");
+            Array.Reverse(arrayString);
             Profiler.EndSample();
         }
 
