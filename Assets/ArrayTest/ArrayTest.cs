@@ -66,6 +66,17 @@ public class ArrayTest : MonoBehaviour
         return list;
     }
 
+    void Reverse<T>(T[] array)
+    {
+        int l = array.Length;
+        for (int i = 0; i < l / 2; i++)
+        {
+            var t = array[i];
+            array[i] = array[l - i - 1];
+            array[l - i - 1] = t;
+        }
+    }
+
     void Start()
     {
         // 32 byte
@@ -297,6 +308,12 @@ public class ArrayTest : MonoBehaviour
         {
             Profiler.BeginSample("Reverse string");
             Array.Reverse(arrayString);
+            Profiler.EndSample();
+        }
+
+        {
+            Profiler.BeginSample("Reverse Custom");
+            Reverse(array);
             Profiler.EndSample();
         }
 
