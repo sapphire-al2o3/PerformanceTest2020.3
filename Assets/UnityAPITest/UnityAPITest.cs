@@ -465,6 +465,13 @@ public class UnityAPITest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 40byte
+        {
+            Profiler.BeginSample("Camera.allCameras");
+            var cameras = Camera.allCameras;
+            Profiler.EndSample();
+        }
+
         {
             // 80byte
             Profiler.BeginSample("JsonUtility object");
