@@ -602,10 +602,25 @@ public class StringTest : MonoBehaviour
             Debug.Log(s);
         }
 
-        // 0byte
+        // 186byte
         {
             var sb = new System.Text.StringBuilder(100);
             Profiler.BeginSample("StringBuilder number 2");
+
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                sb.Append(numbers[i].ToString());
+            }
+
+            Profiler.EndSample();
+            string s = sb.ToString();
+            Debug.Log(s);
+        }
+
+        // 0byte
+        {
+            var sb = new System.Text.StringBuilder(100);
+            Profiler.BeginSample("StringBuilder number 3");
 
             for (int i = 0; i < numbers.Length; i++)
             {
