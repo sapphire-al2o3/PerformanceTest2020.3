@@ -427,19 +427,21 @@ public class StringTest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 0byte
         {
             Profiler.BeginSample("concat null");
             string s = s0 + null;
             Profiler.EndSample();
         }
 
+        // 0byte
         {
             Profiler.BeginSample("concat empty");
             string s = s0 + "";
             Profiler.EndSample();
         }
 
-        // 108byte
+        // 88byte
         {
             Profiler.BeginSample("concat int");
             int i = 123;
@@ -452,6 +454,15 @@ public class StringTest : MonoBehaviour
             Profiler.BeginSample("concat int.ToString");
             int i = 123;
             string s = s0 + i.ToString();
+            Profiler.EndSample();
+        }
+
+        // 108byte
+        // concat(object)が呼ばれるのでiがbox化されている
+        {
+            Profiler.BeginSample("concat $ int");
+            int i = 123;
+            string s = $"{s0}{i}";
             Profiler.EndSample();
         }
 
