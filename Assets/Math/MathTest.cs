@@ -35,5 +35,39 @@ public class MathTest : MonoBehaviour
             Profiler.EndSample();
             Debug.Log(r);
         }
+
+        // 4.97ms
+        {
+            Profiler.BeginSample("equal");
+            float a = 0;
+            float b = 0;
+            int r = 0;
+            for (int i = 0; i < 1000000; i++)
+            {
+                if (a == b)
+                {
+                    r++;
+                }
+            }
+            Profiler.EndSample();
+            Debug.Log(r);
+        }
+
+        // 92.80ms
+        {
+            Profiler.BeginSample("Mathf.Approximately");
+            float a = 0;
+            float b = 0 + Mathf.Epsilon * 2;
+            int r = 0;
+            for (int i = 0; i < 1000000; i++)
+            {
+                if (Mathf.Approximately(a, b))
+                {
+                    r++;
+                }
+            }
+            Profiler.EndSample();
+            Debug.Log(r);
+        }
     }
 }
