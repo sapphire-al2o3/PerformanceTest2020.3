@@ -42,6 +42,8 @@ public class LambdaTest : MonoBehaviour
         return null;
     }
 
+	System.Func<int, int> func;
+
     void Start()
     {
         // 10.9KB
@@ -135,6 +137,20 @@ public class LambdaTest : MonoBehaviour
             int i = a.A;
             string j = a.B;
 
+            Profiler.EndSample();
+        }
+
+        // 112byte
+        {
+            Profiler.BeginSample("add");
+            func += Func0;
+            Profiler.EndSample();
+        }
+
+        // 152byte
+        {
+            Profiler.BeginSample("remove");
+            func -= Func0;
             Profiler.EndSample();
         }
     }
