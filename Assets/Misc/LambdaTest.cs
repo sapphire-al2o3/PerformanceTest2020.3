@@ -147,6 +147,14 @@ public class LambdaTest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 272byte
+        {
+            Profiler.BeginSample("add 2");
+            func += Func1;
+            Profiler.EndSample();
+            func -= Func1;
+        }
+
         // 152byte
         {
             Profiler.BeginSample("remove");
