@@ -284,6 +284,7 @@ public class StringTest : MonoBehaviour
         {
             Profiler.BeginSample("no replace");
             string r = s1.Replace('@', '.');
+            r = s1.Replace("@", ".");
             Profiler.EndSample();
         }
 
