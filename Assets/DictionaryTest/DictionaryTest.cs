@@ -327,6 +327,20 @@ public class DictionaryTest : MonoBehaviour
             Profiler.EndSample();
         }
 
+        // 48B
+        {
+            var hashSet = new HashSet<int>();
+            for (int i = 0; i < 100; i++)
+            {
+                hashSet.Add(i);
+            }
+            Profiler.BeginSample("HashSet foreach");
+            foreach (var e in hashSet)
+            {
+            }
+            Profiler.EndSample();
+        }
+
         // 96B
         {
             Profiler.BeginSample("ReadOnlyDictionary");
